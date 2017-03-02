@@ -1,6 +1,5 @@
 
-/// \file TCPSocket.h
-/// \brief Example for Jiztom
+/// \file TCPSocket.cpp
 /// \date 02.03.2017
 /// \author Daniel Tuchscherer
 
