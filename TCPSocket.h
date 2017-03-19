@@ -10,11 +10,15 @@
 #include <errno.h>
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /// Easier to read.
 typedef int Handle;
 
-/// \brief Creates a TCP socket
-/// \return the socket handle as an integer
+/// \brief Creates a TCP socket.
+/// \return the socket handle as an integer value
 Handle create_tcp_socket();
 
 /// \brief Listen for incoming TCP client connections.
@@ -22,7 +26,7 @@ Handle create_tcp_socket();
 /// \param[in] client_ip to accept as characters. If you give "255.255.255.0" it
 /// will accept any connections from outside.
 /// \param[in] the port to listen to.
-int tcp_server_listen(const Handle server, const char *client_ip,
+int tcp_server_listen(const Handle server, const char* client_ip,
                       const uint16_t port);
 
 /// \brief Blocking wait for incoming client connections
@@ -35,17 +39,21 @@ Handle tcp_server_accept(const Handle server);
 /// \param[in] msg the buffer address to store data on successful receive
 /// \param[in] len in bytes to receive
 /// \return number of bytes received.
-int tcp_receive(const Handle datasocket, uint8_t *msg, const uint16_t len);
+int tcp_receive(const Handle datasocket, uint8_t* msg, const uint16_t len);
 
 /// \brief Send data via TCP/IP.
 /// \param[in] datasocket handle
 /// \param[in] msg the address to read from
 /// \param[in] len length in bytes to send.
 /// \return number of bytes sent. 0 or -1 on error
-int tcp_send(const Handle datasocket, const uint8_t *msg, const uint16_t len);
+int tcp_send(const Handle datasocket, const uint8_t* msg, const uint16_t len);
 
 /// \brief Closes one socket
 /// \param[in] handle the socket to close
 int close_tcp_socket(const Handle handle);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* TCPSOCKET_H */
